@@ -61,7 +61,7 @@ defmodule Microdata do
   Next time you're cooking, **don't risk** getting **raw chicken juice** or **sticky sauces** on your **fancy cookbooks** and **expensive electronics**! We are working on **Connie**, a **conversational cooking assistant** that uses Alexa & Google Home to answer questions like:
 
   > What am I supposed to be doing?
-  > 
+  >
   > What's next for the lasagna?
 
   We wrote this lib to parse imported recipes and wanted to share it back with the community, as there are loads of ways you might use microdata in your own projects. Hope you enjoy!
@@ -128,10 +128,14 @@ defmodule Microdata do
   def parse(html), do: parse(html, base_uri: nil)
 
   def parse(html, base_uri: base_uri) do
-    doc = html |> Meeseeks.parse()
+    html
+    |> Meeseeks.parse()
+    |> parse_document(html: html, base_uri: base_uri)
+  end
 
+  def parse_document(document, html: html, base_uri: base_uri) do
     strategies()
-    |> Enum.flat_map(& &1.parse_items(doc, base_uri))
+    |> Enum.flat_map(& &1.parse_items(document, base_uri))
     |> case do
       items when items != [] ->
         {:ok, %Document{items: items}}
