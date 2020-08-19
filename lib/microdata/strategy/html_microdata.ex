@@ -116,6 +116,8 @@ defmodule Microdata.Strategy.HTMLMicrodata do
     end
   end
 
+  defp parse_property_uri("", _base), do: ""
+  defp parse_property_uri(nil, _base), do: ""
   defp parse_property_uri(uri, base) do
     cond do
       Helpers.absolute_url?(uri) -> uri
