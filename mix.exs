@@ -4,8 +4,8 @@ defmodule Microdata.MixProject do
   def project do
     [
       app: :microdata,
-      version: "0.2.4",
-      elixir: "~> 1.6",
+      version: "0.2.5",
+      elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
 
@@ -30,7 +30,7 @@ defmodule Microdata.MixProject do
     [
       {:credo, "~> 0.9.1", only: [:dev, :test], runtime: false},
       {:ex_doc, ">= 0.0.0", only: :dev},
-      {:httpoison, "~> 1.6.2"},
+      {:httpoison, "~> 1.7"},
       {:meeseeks, "~> 0.15.1"},
       {:mix_test_watch, "~> 0.0", only: :dev, runtime: false}
     ]
