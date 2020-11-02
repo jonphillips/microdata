@@ -106,6 +106,22 @@ defmodule Microdata.Strategy.JSONLD do
     read_locally("schema.org.json")
   end
 
+  defp download_context("https://www.schema.org") do
+    read_locally("schema.org.json")
+  end
+
+  defp download_context("http://www.schema.org") do
+    read_locally("schema.org.json")
+  end
+
+  defp download_context("https://www.schema.org/") do
+    read_locally("schema.org.json")
+  end
+
+  defp download_context("http://www.schema.org/") do
+    read_locally("schema.org.json")
+  end
+
   defp download_context(context) do
     HTTPoison.get!(context, [Accept: "application/ld+json"], follow_redirect: true).body
   end
